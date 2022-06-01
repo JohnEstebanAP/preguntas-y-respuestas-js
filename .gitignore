@@ -194,3 +194,8 @@ nbdist/
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,intellij+all,eclipse,netbeans
 js/App.js
 .idea/workspace.xml
+
+
+#inoro los modulos de npm
+node_modules/
+package-lock.json
