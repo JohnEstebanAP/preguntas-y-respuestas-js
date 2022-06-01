@@ -193,3 +193,4 @@ nbdist/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,intellij+all,eclipse,netbeans
 js/App.js
+.idea/workspace.xml
