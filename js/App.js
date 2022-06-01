@@ -12,6 +12,7 @@ export const app = () => {
       const container = document.querySelector("#container");
 
       const divTitle = document.createElement("div");
+      divTitle.id = "title1";
 
       const title1 = document.createElement("h1");
       title1.textContent= "Juego de preguntas";
