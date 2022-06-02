@@ -10,20 +10,41 @@ export const app = () => {
     
     function start(data) {
       const container = document.querySelector("#container");
+      container.classList="container"
 
       const divTitle = document.createElement("div");
-      divTitle.id = "title1";
+      divTitle.id = "div-title1";
+      divTitle.classList="container"
 
       const title1 = document.createElement("h1");
+      title1.id = "title1";
       title1.textContent= "Juego de preguntas";
 
+
+      const articleQuestion = document.createElement("article");
+      articleQuestion.id = "article-question"
+      articleQuestion.classList="container"
+    
+      const categoryQuestion = document.createElement("h3");
+      categoryQuestion.textContent= "Categoria";
+      const question = document.createElement("P");
+      question.textContent = "pregunta";
+
+
+      
+
       const btnNext = document.createElement("button");
+      btnNext.classList = "btn btn-dark";
+      
       //btnNext.addEventListener("click", kTitulos, false);
       btnNext.textContent = "Completar y continuar";
       btnNext.show = true;
       
       container.appendChild(divTitle);
       divTitle.appendChild(title1);
+      container.appendChild(articleQuestion);
+      articleQuestion.appendChild(categoryQuestion);
+      articleQuestion.appendChild(question);
       container.appendChild(btnNext);
 
       /*
