@@ -12,8 +12,9 @@ export function crearRadioBtn(articleQuestion,divQuestion, data){
     const labelQuestion1 = document.createElement("label");
     labelQuestion1.classList = "form-check-label"
     labelQuestion1.for = "flexRadioDefault1";
+    labelQuestion1.id = "labelRadioDefault1";
     labelQuestion1.textContent = data.option1;
-
+    
     const divCheckedRadio2 = document.createElement("div");
     divCheckedRadio2.classList = "form-check";
 
@@ -25,8 +26,10 @@ export function crearRadioBtn(articleQuestion,divQuestion, data){
 
     const labelQuestion2 = document.createElement("label");
     labelQuestion2.classList = "form-check-label"
+    labelQuestion2.id = "labelRadioDefault2";
     labelQuestion2.for = "flexRadioDefault2";
     labelQuestion2.textContent = data.option2;
+
 
 
     const divCheckedRadio3 = document.createElement("div");
@@ -40,6 +43,7 @@ export function crearRadioBtn(articleQuestion,divQuestion, data){
 
     const labelQuestion3 = document.createElement("label");
     labelQuestion3.classList = "form-check-label"
+    labelQuestion3.id = "labelRadioDefault3";
     labelQuestion3.for = "flexRadioDefault3";
     labelQuestion3.textContent = data.option3;
 
@@ -53,15 +57,14 @@ export function crearRadioBtn(articleQuestion,divQuestion, data){
     inputQuestion4.name = "flexRadio"
 
     const labelQuestion4 = document.createElement("label");
-    labelQuestion4.classList = "form-check-label"
+    labelQuestion4.classList = "form-check-label";
+    labelQuestion4.id = "labelRadioDefault4";
     labelQuestion4.for = "flexRadioDefault4";
     labelQuestion4.textContent = data.option4;
 
     const divCheckedRadio5 = document.createElement("div");
     divCheckedRadio5.classList = "form-check"
 
-
-   // labelQuestion5.checked == true
 
     divCheckedRadio1.appendChild(inputQuestion1);
     divCheckedRadio1.appendChild(labelQuestion1);
@@ -82,4 +85,5 @@ export function crearRadioBtn(articleQuestion,divQuestion, data){
     divQuestion.appendChild(divCheckedRadio4);
 
     articleQuestion.appendChild(divQuestion);
+    
   }
