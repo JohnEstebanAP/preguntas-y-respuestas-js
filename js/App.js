@@ -1,4 +1,5 @@
 import { data } from "./data.js";
+import { crearRadioBtn } from "./Radiobtn.js";
 
 export const app = () => {
   return new Promise((resolve, reject) => {
@@ -27,7 +28,6 @@ export const app = () => {
       title1.id = "title1";
       title1.textContent= "Juego de preguntas";
 
-
       const articleQuestion = document.createElement("article");
       articleQuestion.id = "article-question"
       articleQuestion.classList="container"
@@ -50,6 +50,7 @@ export const app = () => {
       btnNext.textContent = "Completar y continuar";
       btnNext.show = true;
       
+
       divImgQuestion.appendChild(imgQuestion);
       container.appendChild(divImgQuestion);
       container.appendChild(divTitle);
@@ -57,56 +58,22 @@ export const app = () => {
       container.appendChild(articleQuestion);
       articleQuestion.appendChild(categoryQuestion);
       articleQuestion.appendChild(question);
+        /* 
+            data.forEach((dato) => {
+              console.log(dato.question);
+            }); */
+
+      crearRadioBtn(articleQuestion, data[0]);
+
       articleQuestion.appendChild(btnNext);
 
-      /*
 
-      const table = document.createElement("table");
-      const tr = document.createElement("tr");
-      const thName = document.createElement("th");
-      const thLastName = document.createElement("th");
-      const thAge = document.createElement("th");
-      const thEmail = document.createElement("th");
-      const thPhone = document.createElement("th");
-
-      thName.textContent = "Nombre";
-      thLastName.textContent = "Apellido";
-      thAge.textContent = "Edad";
-      thEmail.textContent = "Email";
-      thPhone.textContent = "Telefono";
-
-      table.append(tr);
-
-      tr.appendChild(thName);
-      tr.appendChild(thLastName);
-      tr.appendChild(thAge);
-      tr.appendChild(thEmail);
-      tr.appendChild(thPhone);
-
-      //Evento del click en los titulos
-      tr.addEventListener("click", clickTitulos, false);
-
-      container.append(table);
-
-      data.forEach((dato) => {
-        const tr = document.createElement("tr");
-        const tdQuestion = document.createElement("td");
-        const tdOption1 = document.createElement("td");
-        const tdOption2 = document.createElement("td");
-        const tdOption3 = document.createElement("td");
-        const tdOption4 = document.createElement("td");
-        const tdCategory = document.createElement("td");
-
-        tdQuestion.textContent = dato.question  ;
-
-        tr.appendChild(tdQuestion);
-
-        table.appendChild(tr);
-      });*/
     }
 
     start(data);
   });
+
+
 
 /*
   
