@@ -1,9 +1,25 @@
 import { data } from "./data.js";
 import { crearRadioBtn } from "./Radiobtn.js";
 
+var dataCategory = [];
+var preguntaActual = [];
+var categoria = 0;
+var respuestaCorrecta = 0;
+var respuestaIncorrecta = 0;
+var puntaje = 0;
+const listCategory = [
+  "General",
+  "Matematicas",
+  "Programacion",
+  "Logica",
+  "Historia",
+];
 
-var dataCategory = []
-
+if (categoria === 0) {
+  dataCategory = data.filter(
+    (dato) => dato.category === listCategory[categoria]
+  );
+}
 export const app = () => {
   return new Promise((resolve, reject) => {
     start();
@@ -11,19 +27,10 @@ export const app = () => {
 
   function start() {
     //Filtro la data por categorias
-    const listCategory = [
-      "General",
-      "Matematicas",
-      "Programacion",
-      "Logica",
-      "Historia",
-    ];
-    
-    dataCategory = data.filter(
-      (dato) => dato.category === listCategory[0]
-    );
+
     QuestionsLocaStorage();
-    show(dataCategory[ordenQuestionAleatorio()]);
+    preguntaActual = dataCategory[ordenQuestionAleatorio()];
+    show(preguntaActual);
   }
 
   function show(data) {
@@ -49,7 +56,7 @@ export const app = () => {
     articleQuestion.id = "article-question";
     articleQuestion.classList = "container";
 
-    const divQuestion = document.createElement("div");
+    const divQuestion = document.createElement("form");
     divQuestion.classList = "card";
 
     const categoryQuestion = document.createElement("h3");
@@ -58,7 +65,7 @@ export const app = () => {
 
     const question = document.createElement("P");
     question.textContent = data.question;
-    question.id = "question"
+    question.id = "question";
 
     const btnNext = document.createElement("button");
     btnNext.classList = "btn btn-dark";
@@ -84,7 +91,6 @@ export const app = () => {
   function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
-
   function ordenQuestionAleatorio() {
     let orden = JSON.parse(localStorage.getItem("order"));
     let ordenAleatorio = random(0, 4);
@@ -105,18 +111,33 @@ export const app = () => {
       localStorage.getItem("order") === "null" ||
       localStorage.getItem("order") === null
     ) {
-      const order = [false, false, false, false];
+      const order = [false, false, false, false, false];
       localStorage.setItem("order", JSON.stringify(order));
       console.log("se agrego el orden de los elementos del localstorage");
+
+  
     } else {
       let orden = JSON.parse(localStorage.getItem("order"));
       const order = orden.filter((dato) => dato === true);
-      if (order.length === 4) {
+
+      if (order.length === 5) {
         localStorage.removeItem("order");
         QuestionsLocaStorage();
         console.log("se elimino el orden de los elementos del localstorage");
+
+        if (categoria < 4) {
+          categoria++;
+        } else {
+          finisGame();
+        }
       }
     }
+
+    dataCategory = data.filter(
+      (dato) => dato.category === listCategory[categoria]
+    );
+    console.log(categoria);
+    console.log(localStorage);
   }
 
   function clickBtnNext() {
@@ -124,26 +145,36 @@ export const app = () => {
     const option2 = document.querySelector("#flexRadioDefault2");
     const option3 = document.querySelector("#flexRadioDefault3");
     const option4 = document.querySelector("#flexRadioDefault4");
-    if (option1.checked) {
-    }
-    if (option2.checked) {
-    }
-    if (option3.checked) {
-    }
-    if (option4.checked) {
-    }
 
+    switch (preguntaActual.answer) {
+      case 1:
+        option1.checked ? respuestaCorrecta++ : respuestaIncorrecta--;
+        break;
+      case 2:
+        option2.checked ? respuestaCorrecta++ : respuestaIncorrecta--;
+        break;
+      case 3:
+        option3.checked ? respuestaCorrecta++ : respuestaIncorrecta--;
+        break;
+      case 4:
+        option4.checked ? respuestaCorrecta++ : respuestaIncorrecta--;
+        break;
+      default:
+    }
+    puntaje = respuestaCorrecta * 10 - respuestaIncorrecta * 10;
+
+    console.log("puntaje", puntaje);
     QuestionsLocaStorage();
-    nextQuestion(dataCategory[ordenQuestionAleatorio()])
+    preguntaActual = dataCategory[ordenQuestionAleatorio()];
+    nextQuestion(preguntaActual);
   }
 
   function nextQuestion(data) {
+    const formCard = document.querySelector(".card");
+    formCard.reset();
+
     const category = document.querySelector("#title-category");
-    const question = document.querySelector("#question")
-    const option1 = document.querySelector("#flexRadioDefault1");
-    const option2 = document.querySelector("#flexRadioDefault2");
-    const option3 = document.querySelector("#flexRadioDefault3");
-    const option4 = document.querySelector("#flexRadioDefault4");
+    const question = document.querySelector("#question");
 
     const labelOption1 = document.querySelector("#labelRadioDefault1");
     const labelOption2 = document.querySelector("#labelRadioDefault2");
@@ -152,51 +183,14 @@ export const app = () => {
 
     question.textContent = data.question;
     category.textContent = data.category;
-    option1.textContent = data.option1;
-    option1.textContent = data.option3;
-    option1.textContent = data.option3;
-    option1.textContent = data.option4;
 
     labelOption1.textContent = data.option1;
-    labelOption2.textContent = data.option3;
+    labelOption2.textContent = data.option2;
     labelOption3.textContent = data.option3;
     labelOption4.textContent = data.option4;
   }
-  /*
-            data.forEach((dato) => {
-              console.log(dato.question);
-            }); */
-
-  /*
-
-    //Se ordena los elementos de menor a mallor
-    function ordenarAZ(data) {
-      data.sort(function (a, b) {
-        if (a.nombre > b.nombre) {
-          return 1;
-        }
-        if (a.nombre < b.nombre) {
-          return -1;
-        }
-        return 0;
-      });
-    }
-
-
-
-    var status = 0;
-    function clickTitulos() {
-      if (status === 0) {
-
-        return true;
-      } else if (status === 1) {
-
-        return true;
-      } else {
-
-        return true;
-      }
-      status++;
-      return false;
-    }*/
+  function finisGame() {
+    const formCard = document.querySelector(".card");
+    formCard.reset();
+  }
 };
