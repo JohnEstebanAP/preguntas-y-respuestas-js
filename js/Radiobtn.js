@@ -1,6 +1,4 @@
-export function crearRadioBtn(articleQuestion, data){
-    const divQuestion = document.createElement("div");
-    divQuestion.classList = "card"
+export function crearRadioBtn(articleQuestion,divQuestion, data){
 
     const divCheckedRadio1 = document.createElement("div");
     divCheckedRadio1.classList = "form-check"
@@ -12,7 +10,7 @@ export function crearRadioBtn(articleQuestion, data){
     inputQuestion1.name = "flexRadio";
 
     const labelQuestion1 = document.createElement("label");
-    labelQuestion1.classList = "form-check-label" 
+    labelQuestion1.classList = "form-check-label"
     labelQuestion1.for = "flexRadioDefault1";
     labelQuestion1.textContent = data.option1;
 
@@ -26,7 +24,7 @@ export function crearRadioBtn(articleQuestion, data){
     inputQuestion2.name = "flexRadio";
 
     const labelQuestion2 = document.createElement("label");
-    labelQuestion2.classList = "form-check-label" 
+    labelQuestion2.classList = "form-check-label"
     labelQuestion2.for = "flexRadioDefault2";
     labelQuestion2.textContent = data.option2;
 
@@ -41,7 +39,7 @@ export function crearRadioBtn(articleQuestion, data){
     inputQuestion3.name = "flexRadio"
 
     const labelQuestion3 = document.createElement("label");
-    labelQuestion3.classList = "form-check-label" 
+    labelQuestion3.classList = "form-check-label"
     labelQuestion3.for = "flexRadioDefault3";
     labelQuestion3.textContent = data.option3;
 
@@ -55,7 +53,7 @@ export function crearRadioBtn(articleQuestion, data){
     inputQuestion4.name = "flexRadio"
 
     const labelQuestion4 = document.createElement("label");
-    labelQuestion4.classList = "form-check-label" 
+    labelQuestion4.classList = "form-check-label"
     labelQuestion4.for = "flexRadioDefault4";
     labelQuestion4.textContent = data.option4;
 
@@ -70,14 +68,14 @@ export function crearRadioBtn(articleQuestion, data){
 
     divCheckedRadio2.appendChild(inputQuestion2);
     divCheckedRadio2.appendChild(labelQuestion2);
-    
+
     divCheckedRadio3.appendChild(inputQuestion3);
     divCheckedRadio3.appendChild(labelQuestion3);
-    
-        
+
+
     divCheckedRadio4.appendChild(inputQuestion4);
     divCheckedRadio4.appendChild(labelQuestion4);
- 
+
     divQuestion.appendChild(divCheckedRadio1);
     divQuestion.appendChild(divCheckedRadio2);
     divQuestion.appendChild(divCheckedRadio3);
