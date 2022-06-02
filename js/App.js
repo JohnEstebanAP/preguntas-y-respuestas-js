@@ -12,6 +12,13 @@ export const app = () => {
       const container = document.querySelector("#container");
       container.classList="container"
 
+      const divImgQuestion = document.createElement("figure");
+      divImgQuestion.classList="figure";
+
+      const imgQuestion = document.createElement("img");
+      imgQuestion.id="img-question";
+      imgQuestion.src ="/img/puzle.png";
+
       const divTitle = document.createElement("div");
       divTitle.id = "div-title1";
       divTitle.classList="container"
@@ -27,6 +34,8 @@ export const app = () => {
     
       const categoryQuestion = document.createElement("h3");
       categoryQuestion.textContent= "Categoria";
+      categoryQuestion.id = "title-category";
+      
       const question = document.createElement("P");
       question.textContent = "pregunta";
 
@@ -35,17 +44,20 @@ export const app = () => {
 
       const btnNext = document.createElement("button");
       btnNext.classList = "btn btn-dark";
+      btnNext.id = "btn-next";
       
       //btnNext.addEventListener("click", kTitulos, false);
       btnNext.textContent = "Completar y continuar";
       btnNext.show = true;
       
+      divImgQuestion.appendChild(imgQuestion);
+      container.appendChild(divImgQuestion);
       container.appendChild(divTitle);
       divTitle.appendChild(title1);
       container.appendChild(articleQuestion);
       articleQuestion.appendChild(categoryQuestion);
       articleQuestion.appendChild(question);
-      container.appendChild(btnNext);
+      articleQuestion.appendChild(btnNext);
 
       /*
 
