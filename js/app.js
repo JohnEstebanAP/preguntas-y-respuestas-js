@@ -92,7 +92,7 @@ function starGame() {
   btnExit.id = "btn-exit";
   btnExit.textContent = "Salir";
   btnExit.type = "button";
-  btnExit.addEventListener("click", clickBtnNext, false);
+  btnExit.addEventListener("click", btnClickExit, false);
 
   divImgQuestion.appendChild(imgQuestion);
   container.appendChild(divImgQuestion);
@@ -255,3 +255,8 @@ const finisGame = async (user, puntaje, categori) => {
   }
 };
 
+
+function btnClickExit(){
+  updateScore();
+  finisGame(user, puntaje, categoria);
+}
