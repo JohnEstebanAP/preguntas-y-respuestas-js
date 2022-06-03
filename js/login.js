@@ -17,7 +17,7 @@ function initLogin() {
 
   const imgQuestion = document.createElement("img");
   imgQuestion.id = "img-question";
-  imgQuestion.src = "/img/quiz.png";
+  imgQuestion.src = "https://github.com/JohnEstebanAP/preguntas-y-respuestas-js/blob/master/img/quiz.png?raw=true";
 
   // Crea un formulario
   const formLogin = document.createElement("form");
