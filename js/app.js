@@ -21,18 +21,9 @@ const listCategory = [
 
 export const app = (userLogin) => {
   return new Promise((resolve, reject) => {
+    //Recuperamos el nembre del usuario
     user = userLogin;
-    /*   const m  ain = async () => {
-      try {
-        const Login = await login();
-        console.log(Login());    
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    main();
-     */
+    //Se inicia el juego
     starGame();
   });
 };
@@ -95,6 +86,14 @@ function starGame() {
   btnNext.show = true;
   btnNext.addEventListener("click", clickBtnNext, false);
 
+
+  const btnExit = document.createElement("button");
+  btnExit.classList = "btn btn-danger";
+  btnExit.id = "btn-exit";
+  btnExit.textContent = "Salir";
+  btnExit.type = "button";
+  btnExit.addEventListener("click", clickBtnNext, false);
+
   divImgQuestion.appendChild(imgQuestion);
   container.appendChild(divImgQuestion);
   container.appendChild(divTitle);
@@ -109,6 +108,7 @@ function starGame() {
   crearRadioBtn(articleQuestion, divQuestion, data1);
 
   articleQuestion.appendChild(btnNext);
+  articleQuestion.appendChild(btnExit);
 }
 
 function ordenQuestionAleatorio() {
@@ -213,7 +213,7 @@ function nextCategori() {
       categoria++;
       order = [false, false, false, false, false];
     } else {
-      finisGame(user, puntaje);
+      finisGame(user, puntaje, categoria);
     }
   }
   dataCategory = data.filter(
@@ -246,37 +246,12 @@ function nextQuestion() {
   labelOption3.textContent = data1.option3;
   labelOption4.textContent = data1.option4;
 }
-const finisGame = async (user, puntaje) => {
+const finisGame = async (user, puntaje, categori) => {
   try {
-    const finis = await FinisGame(user, puntaje);
-    finis(user, puntaje);
+    const finis = await FinisGame(user, puntaje, categori);
+    finis(user, puntaje, categori);
   } catch (error) {
     console.log(error);
   }
 };
 
-/* function QuestionsLocaStorage() {
-  if (
-    localStorage.getItem("order") === "null" ||
-    localStorage.getItem("order") === null
-  ) {
-    const order = [false, false, false, false, false];
-    localStorage.setItem("order", JSON.stringify(order));
-    console.log("se agrego el orden de los elementos del localstorage");
-  } else {
-    let orden = JSON.parse(localStorage.getItem("order"));
-    const order = orden.filter((dato) => dato === true);
-
-    if (order.length === 5) {
-      localStorage.removeItem("order");
-      QuestionsLocaStorage();
-      console.log("se elimino el orden de los elementos del localstorage");
-      
-      if (categoria < 4) {
-        categoria++;
-      } else {
-        finisGame();
-      }
-    }
-  }
-} */
