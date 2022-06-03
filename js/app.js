@@ -9,6 +9,7 @@ var categoria = 0;
 var respuestaCorrecta = 0;
 var respuestaIncorrecta = 0;
 var puntaje = 0;
+var user = "";
 
 const listCategory = [
   "General",
@@ -18,9 +19,9 @@ const listCategory = [
   "Historia",
 ];
 
-export const app = (user) => {
+export const app = (userLogin) => {
   return new Promise((resolve, reject) => {
-    console.log(user);
+    user = userLogin;
     /*   const m  ain = async () => {
       try {
         const Login = await login();
@@ -207,12 +208,12 @@ function updateScore() {
 
 function nextCategori() {
   const orden = order.filter((dato) => dato === true);
-  if (orden.length === 5) {
+  if (orden.length === 1) {
     if (categoria < 4) {
       categoria++;
       order = [false, false, false, false, false];
     } else {
-      //finisGame(user, puntaje);
+      finisGame(user, puntaje);
     }
   }
   dataCategory = data.filter(
@@ -247,9 +248,6 @@ function nextQuestion() {
 }
 const finisGame = async (user, puntaje) => {
   try {
-    const formCard = document.querySelector(".card");
-    formCard.reset();
-
     const finis = await FinisGame(user, puntaje);
     finis(user, puntaje);
   } catch (error) {

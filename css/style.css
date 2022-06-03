@@ -104,3 +104,20 @@ h1{
     width: 200px;
    /*  background-image: url("../img/puzle.png"); */
 }
+
+.div-score{
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    height: 250px;
+    width: 400px;
+    background-color:rgb(77, 253, 136);  
+}
+
+#h1-user{
+    
+}
+
+#h2-score{
+
+}
