@@ -14,9 +14,9 @@ function scoreEnd(user, puntaje) {
   const divScore = document.createElement("div");
   divScore.classList = "div-score";
   if (puntaje >= 60) {
-    divScore.backgroundColor = "green";
+    divScore.style.backgroundColor = "green";
   } else {
-    divScore.backgroundColor = "red";
+    divScore.style.backgroundColor = "red";
   }
 
   const h1User = document.createElement("h1");
