@@ -1,4 +1,5 @@
 import { data } from "./data.js";
+
 import { crearRadioBtn } from "./Radiobtn.js";
 
 var order = [false, false, false, false, false];
@@ -17,9 +18,26 @@ const listCategory = [
   "Historia",
 ];
 
-export const app = () => {
+export const app = (user) => {
   return new Promise((resolve, reject) => {
-    //Guardo la data y la recupero del localStorage
+      console.log(user);
+  /*   const m  ain = async () => {
+      try {
+        const Login = await login();
+        console.log(Login());    
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    main();
+     */
+    starGame();
+  });
+};
+
+function starGame(){
+  //Guardo la data y la recupero del localStorage
     //QuestionsLocaStorage();
     //Filtro la data por categorias
     nextCategori()
@@ -42,6 +60,14 @@ export const app = () => {
     divTitle.id = "div-title1";
     divTitle.classList = "container";
 
+    const divCorrectAnswers = document.createElement("div");
+    divCorrectAnswers.id = "div-correct-answers";
+    divCorrectAnswers.textContent = 0;
+
+    const divWrongAnswers = document.createElement("div");
+    divWrongAnswers.id="div-wrong-answers";
+    divWrongAnswers.textContent= 0;
+
     const title1 = document.createElement("h1");
     title1.id = "title1";
     title1.textContent = "Juego de preguntas";
@@ -50,6 +76,7 @@ export const app = () => {
     articleQuestion.id = "article-question";
     articleQuestion.classList = "container";
 
+ 
     const divQuestion = document.createElement("form");
     divQuestion.classList = "card";
 
@@ -71,7 +98,9 @@ export const app = () => {
     divImgQuestion.appendChild(imgQuestion);
     container.appendChild(divImgQuestion);
     container.appendChild(divTitle);
+    divTitle.appendChild(divCorrectAnswers)
     divTitle.appendChild(title1);
+    divTitle.appendChild(divWrongAnswers)
     container.appendChild(articleQuestion);
     divQuestion.appendChild(categoryQuestion);
     divQuestion.appendChild(question);
@@ -80,8 +109,7 @@ export const app = () => {
     crearRadioBtn(articleQuestion, divQuestion, data1);
 
     articleQuestion.appendChild(btnNext);
-  });
-};
+}
 
 function ordenQuestionAleatorio() {
   //let orden = JSON.parse(localStorage.getItem("order"));

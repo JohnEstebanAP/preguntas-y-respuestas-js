@@ -1,9 +1,11 @@
-import {app} from "./app.js";
+
+import { login } from "./login.js";
 
 const main = async () => {
   try {
-    const Start = await app();
-    Start();
+    const Login = await login();
+    Login();   
+
   } catch (error) {
     console.log(error);
   }

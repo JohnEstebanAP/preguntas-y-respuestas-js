@@ -28,6 +28,20 @@ h1{
     margin: 30px;
 }
 
+.form-card{
+    border-radius: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    margin: 0px;
+}
+
+.div-form{
+    display: flex;
+    flex-direction: column;
+    padding: 50px
+}
 
 
 #title-category{
@@ -35,7 +49,35 @@ h1{
 }
 
 #div-title1{
+    display: bl;
+    flex-direction:row;
+    justify-content: space-between;
     background-color:rgb(88, 146, 255);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    padding-bottom: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#div-correct-answers{
+    font-size: 40px;
+    padding: 20px;
+    background-color:rgb(134, 238, 114);
+}
+
+#div-wrong-answers{
+    font-size: 40px;
+    padding: 20px;
+    background-color:rgb(255, 91, 91);
+}
+
+#div-title-login{
+    background-color:rgb(88, 146, 255);
+    margin: 0px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 0;
@@ -53,7 +95,7 @@ h1{
 }
 
 #btn-next{
-
+    margin-top: 20px;
 }
 
 #img-question{
