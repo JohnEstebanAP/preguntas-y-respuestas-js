@@ -16,7 +16,7 @@ function scoreEnd(user, puntaje) {
 
   const divScore = document.createElement("div");
   divScore.classList = "div-score";
-  if (puntaje >= 60) {
+  if (puntaje >= 20) {
     divScore.style.backgroundColor = "green";
   } else {
     divScore.style.backgroundColor = "red";
@@ -60,29 +60,3 @@ function LocaStorage(user, puntaje, categoria) {
   localStorage.setItem("recordUser", JSON.stringify(recordUser));
 }
 
-/* function QuestionsLocaStorage() {
-  if (
-    localStorage.getItem("historyUser") === "null" ||
-    localStorage.getItem("historyUser") === null
-  ) {
-    const order = [false, false, false, false, false];
-    localStorage.setItem("order", JSON.stringify(order));
-    console.log("se agrego el orden de los elementos del localstorage");
-  } else {
-    let orden = JSON.parse(localStorage.getItem("order"));
-    const order = orden.filter((dato) => dato === true);
-
-    if (order.length === 5) {
-      localStorage.removeItem("order");
-      QuestionsLocaStorage();
-      console.log("se elimino el orden de los elementos del localstorage");
-
-      if (categoria < 4) {
-        categoria++;
-      } else {
-        finisGame();
-      }
-    }
-  }
-}
- */
