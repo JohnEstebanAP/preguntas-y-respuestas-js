@@ -1,5 +1,5 @@
 import { data } from "./data.js";
-
+import { FinisGame } from "./FinisGame.js";
 import { crearRadioBtn } from "./Radiobtn.js";
 
 var order = [false, false, false, false, false];
@@ -13,15 +13,15 @@ var puntaje = 0;
 const listCategory = [
   "General",
   "Matematicas",
-  "Programacion",
-  "Logica",
+  "Programación",
+  "Lógica",
   "Historia",
 ];
 
 export const app = (user) => {
   return new Promise((resolve, reject) => {
-      console.log(user);
-  /*   const m  ain = async () => {
+    console.log(user);
+    /*   const m  ain = async () => {
       try {
         const Login = await login();
         console.log(Login());    
@@ -36,79 +36,78 @@ export const app = (user) => {
   });
 };
 
-function starGame(){
+function starGame() {
   //Guardo la data y la recupero del localStorage
-    //QuestionsLocaStorage();
-    //Filtro la data por categorias
-    nextCategori()
+  //QuestionsLocaStorage();
+  //Filtro la data por categorias
+  nextCategori();
 
-    const index = ordenQuestionAleatorio();
-    data1 = dataCategory[index];
+  const index = ordenQuestionAleatorio();
+  data1 = dataCategory[index];
 
-    //SE Carga la estretura es el docoment tipo HTML
-    const container = document.querySelector("#container");
-    container.classList = "container";
+  //SE Carga la estretura es el docoment tipo HTML
+  const container = document.querySelector("#container");
+  container.classList = "container";
 
-    const divImgQuestion = document.createElement("figure");
-    divImgQuestion.classList = "figure";
+  const divImgQuestion = document.createElement("figure");
+  divImgQuestion.classList = "figure";
 
-    const imgQuestion = document.createElement("img");
-    imgQuestion.id = "img-question";
-    imgQuestion.src = "/img/puzle.png";
+  const imgQuestion = document.createElement("img");
+  imgQuestion.id = "img-question";
+  imgQuestion.src = "/img/puzle.png";
 
-    const divTitle = document.createElement("div");
-    divTitle.id = "div-title1";
-    divTitle.classList = "container";
+  const divTitle = document.createElement("div");
+  divTitle.id = "div-title1";
+  divTitle.classList = "container";
 
-    const divCorrectAnswers = document.createElement("div");
-    divCorrectAnswers.id = "div-correct-answers";
-    divCorrectAnswers.textContent = 0;
+  const divCorrectAnswers = document.createElement("div");
+  divCorrectAnswers.id = "div-correct-answers";
+  divCorrectAnswers.textContent = 0;
 
-    const divWrongAnswers = document.createElement("div");
-    divWrongAnswers.id="div-wrong-answers";
-    divWrongAnswers.textContent= 0;
+  const divWrongAnswers = document.createElement("div");
+  divWrongAnswers.id = "div-wrong-answers";
+  divWrongAnswers.textContent = 0;
 
-    const title1 = document.createElement("h1");
-    title1.id = "title1";
-    title1.textContent = "Juego de preguntas";
+  const title1 = document.createElement("h1");
+  title1.id = "title1";
+  title1.textContent = "Juego de preguntas";
 
-    const articleQuestion = document.createElement("article");
-    articleQuestion.id = "article-question";
-    articleQuestion.classList = "container";
+  const articleQuestion = document.createElement("article");
+  articleQuestion.id = "article-question";
+  articleQuestion.classList = "container";
 
- 
-    const divQuestion = document.createElement("form");
-    divQuestion.classList = "card";
+  const divQuestion = document.createElement("form");
+  divQuestion.classList = "card";
 
-    const categoryQuestion = document.createElement("h3");
-    categoryQuestion.textContent = data1.category;
-    categoryQuestion.id = "title-category";
+  const categoryQuestion = document.createElement("h3");
+  categoryQuestion.textContent = data1.category;
+  categoryQuestion.id = "title-category";
 
-    const question = document.createElement("P");
-    question.textContent = data1.question;
-    question.id = "question";
+  const question = document.createElement("P");
+  question.textContent = data1.question;
+  question.id = "question";
 
-    const btnNext = document.createElement("button");
-    btnNext.classList = "btn btn-dark";
-    btnNext.id = "btn-next";
-    btnNext.textContent = "Completar y continuar";
-    btnNext.show = true;
-    btnNext.addEventListener("click", clickBtnNext, false);
+  const btnNext = document.createElement("button");
+  btnNext.classList = "btn btn-dark";
+  btnNext.id = "btn-next";
+  btnNext.textContent = "Completar y continuar";
+  btnNext.show = true;
+  btnNext.addEventListener("click", clickBtnNext, false);
 
-    divImgQuestion.appendChild(imgQuestion);
-    container.appendChild(divImgQuestion);
-    container.appendChild(divTitle);
-    divTitle.appendChild(divCorrectAnswers)
-    divTitle.appendChild(title1);
-    divTitle.appendChild(divWrongAnswers)
-    container.appendChild(articleQuestion);
-    divQuestion.appendChild(categoryQuestion);
-    divQuestion.appendChild(question);
-    articleQuestion.appendChild(divQuestion);
+  divImgQuestion.appendChild(imgQuestion);
+  container.appendChild(divImgQuestion);
+  container.appendChild(divTitle);
+  divTitle.appendChild(divCorrectAnswers);
+  divTitle.appendChild(title1);
+  divTitle.appendChild(divWrongAnswers);
+  container.appendChild(articleQuestion);
+  divQuestion.appendChild(categoryQuestion);
+  divQuestion.appendChild(question);
+  articleQuestion.appendChild(divQuestion);
 
-    crearRadioBtn(articleQuestion, divQuestion, data1);
+  crearRadioBtn(articleQuestion, divQuestion, data1);
 
-    articleQuestion.appendChild(btnNext);
+  articleQuestion.appendChild(btnNext);
 }
 
 function ordenQuestionAleatorio() {
@@ -182,13 +181,12 @@ function clickBtnNext() {
       option3.checked ||
       option4.checked
     ) {
-      puntaje = respuestaCorrecta * 10 - respuestaIncorrecta * 10;
-      console.log("puntaje", puntaje);
-      console.log("categoria", categoria);
-      console.log("category", dataCategory);
+      //Actualizacion del puntaje
+      updateScore();
+      //validar si se tiene actualizar la categoria
       nextCategori();
+      //Actualizar la pregunta
       nextQuestion();
-      
     } else {
       respuestaIncorrecta--;
     }
@@ -197,25 +195,35 @@ function clickBtnNext() {
   }
 }
 
-function nextCategori(){
-    const orden = order.filter((dato) => dato === true);
-    if (orden.length === 5) {
-      if (categoria < 4) {
-        categoria++;
-        order = [false, false, false, false, false];
-      } else {
-        finisGame();
-      }
+function updateScore() {
+  const divCorrectAnswers = document.querySelector("#div-correct-answers");
+  divCorrectAnswers.textContent = respuestaCorrecta;
+  console.log("puntaje", respuestaCorrecta);
+  const divWrongAnswers = document.querySelector("#div-wrong-answers");
+  divWrongAnswers.textContent = respuestaIncorrecta;
+  console.log("puntaje", respuestaIncorrecta);
+  puntaje = respuestaCorrecta * 10 - respuestaIncorrecta * 10;
+}
+
+function nextCategori() {
+  const orden = order.filter((dato) => dato === true);
+  if (orden.length === 5) {
+    if (categoria < 4) {
+      categoria++;
+      order = [false, false, false, false, false];
+    } else {
+      //finisGame(user, puntaje);
     }
-    dataCategory = data.filter(
-        (dato) => dato.category === listCategory[categoria]
-      );  
+  }
+  dataCategory = data.filter(
+    (dato) => dato.category === listCategory[categoria]
+  );
 }
 
 function nextQuestion() {
   //QuestionsLocaStorage();
   const index = ordenQuestionAleatorio();
-  console.log("numero pregunta ", order)
+  console.log("numero pregunta ", order);
   data1 = dataCategory[index];
 
   const formCard = document.querySelector(".card");
@@ -237,11 +245,17 @@ function nextQuestion() {
   labelOption3.textContent = data1.option3;
   labelOption4.textContent = data1.option4;
 }
+const finisGame = async (user, puntaje) => {
+  try {
+    const formCard = document.querySelector(".card");
+    formCard.reset();
 
-/* function finisGame() {
-  const formCard = document.querySelector(".card");
-  formCard.reset();
-} */
+    const finis = await FinisGame(user, puntaje);
+    finis(user, puntaje);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 /* function QuestionsLocaStorage() {
   if (

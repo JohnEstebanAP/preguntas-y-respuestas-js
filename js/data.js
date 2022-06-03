@@ -95,7 +95,7 @@ export const data = [
         option3: 'while()',
         option4: 'try',
         answer: '3',
-        category: 'Programacion'
+        category: 'Programación'
     }, {
         question: '¿La estructura condicional más simple en java es?',
         option1: 'if()',
@@ -103,7 +103,7 @@ export const data = [
         option3: 'for()',
         option4: 'foreach()',
         answer: '1',
-        category: 'Programacion'
+        category: 'Programación'
     }, {
         question: '¿Proceso de diseñar, codificar, depurar y mantener el código fuente de programas computacionales?',
         option1: 'Compilación',
@@ -111,7 +111,7 @@ export const data = [
         option3: 'Hardware',
         option4: 'Software',
         answer: '2',
-        category: 'Programacion'
+        category: 'Programación'
     }, {
         question: 'Lenguaje formal diseñado para expresar procesos que pueden ser llevados a cabo por máquinas como las computadoras.',
         option1: 'Variables',
@@ -119,7 +119,7 @@ export const data = [
         option3: 'Lenguaje de programación',
         option4: 'Diseño de Flujo',
         answer: '3',
-        category: 'Programacion'
+        category: 'Programación'
     }, {
         question: 'Son descripciones gráficas de algoritmos; usan símbolos conectados con flechas para indicar la secuencia de instrucciones.',
         option1: 'Diagramas de flujo',
@@ -127,7 +127,7 @@ export const data = [
         option3: 'Pseudocódigo',
         option4: 'Lenguaje de programación',
         answer: '1',
-        category: 'Programacion'
+        category: 'Programación'
     },
     // Logica
     {
@@ -137,7 +137,7 @@ export const data = [
         option3: 'Es Mi Padre',
         option4: 'Es Mi Primo',
         answer: '1',
-        category: 'Logica'
+        category: 'Lógica'
     },
  {
         question: '¿Qué letra pasa de ser una consonante a una vocal con tan solo darle la vuelta?',
@@ -146,7 +146,7 @@ export const data = [
         option3: 'a',
         option4: 'La e',
         answer: '2',
-        category: 'Logica'
+        category: 'Lógica'
     },
  {
         question: '¿Qué pesa más un kilo de plumas o de plomo?',
@@ -155,7 +155,7 @@ export const data = [
         option3: 'Ambos pesan lo mismo',
         option4: 'Ninguno de los dos',
         answer: '3',
-        category: 'Logica'
+        category: 'Lógica'
     },
  {
         question: 'Un tren eléctrico viaja de Madrid a Barcelona, ¿hacia dónde va el humo del tren?',
@@ -164,7 +164,7 @@ export const data = [
         option3: 'Hacia adelante',
         option4: 'Hacia ningún lado',
         answer: '4',
-        category: 'Logica'
+        category: 'Lógica'
     },  {
         question: 'Algunos meses tienen 30 días, otros 31. ¿Cuántos tienen 28 días?',
         option1: 'Todos los meses',
@@ -172,7 +172,7 @@ export const data = [
         option3: '1 Mes',
         option4: '5 Meses',
         answer: '1',
-        category: 'Logica'
+        category: 'Lógica'
     },
     // Historia
     {
