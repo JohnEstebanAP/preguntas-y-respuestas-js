@@ -69,7 +69,7 @@ export const data = [
         option3: 'A=LxL',
         option4: 'A=Pi(R^2)',
         answer: '3',
-        category: 'Matematicas"'
+        category: 'Matematicas'
     }, {
         question: '¿Qué expresa esta formula? e=mc^2',
         option1: 'equivalencia entre masa y energía',
@@ -77,7 +77,7 @@ export const data = [
         option3: 'Circunferencia de un círculo',
         option4: 'Volumen de un cubo',
         answer: '1',
-        category: 'Matematicas"'
+        category: 'Matematicas'
     }, {
         question: '¿Cuáles de los siguientes triángulos, según sus medidas son rectángulos?',
         option1: '3 cm, 4 cm, 7 cm',

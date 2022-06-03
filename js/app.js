@@ -22,10 +22,7 @@ export const app = () => {
     //Guardo la data y la recupero del localStorage
     //QuestionsLocaStorage();
     //Filtro la data por categorias
-    dataCategory = data.filter(
-      (dato) => dato.category === listCategory[categoria]
-    );
-
+    nextCategori()
 
     const index = ordenQuestionAleatorio();
     data1 = dataCategory[index];
@@ -159,13 +156,32 @@ function clickBtnNext() {
     ) {
       puntaje = respuestaCorrecta * 10 - respuestaIncorrecta * 10;
       console.log("puntaje", puntaje);
+      console.log("categoria", categoria);
+      console.log("category", dataCategory);
+      nextCategori();
       nextQuestion();
+      
     } else {
       respuestaIncorrecta--;
     }
   } catch (err) {
     console.log("Error Precesando la pregunta:", err);
   }
+}
+
+function nextCategori(){
+    const orden = order.filter((dato) => dato === true);
+    if (orden.length === 5) {
+      if (categoria < 4) {
+        categoria++;
+        order = [false, false, false, false, false];
+      } else {
+        finisGame();
+      }
+    }
+    dataCategory = data.filter(
+        (dato) => dato.category === listCategory[categoria]
+      );  
 }
 
 function nextQuestion() {
@@ -198,8 +214,8 @@ function nextQuestion() {
   const formCard = document.querySelector(".card");
   formCard.reset();
 } */
-/* 
-function QuestionsLocaStorage() {
+
+/* function QuestionsLocaStorage() {
   if (
     localStorage.getItem("order") === "null" ||
     localStorage.getItem("order") === null
@@ -223,5 +239,4 @@ function QuestionsLocaStorage() {
       }
     }
   }
-}
- */
+} */
