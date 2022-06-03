@@ -1,35 +1,15 @@
-import { data } from "./data.js";
+
 import { crearRadioBtn } from "./Radiobtn.js";
 
-var dataCategory = [];
-var preguntaActual = [];
-var categoria = 0;
-var respuestaCorrecta = 0;
-var respuestaIncorrecta = 0;
-var puntaje = 0;
-const listCategory = [
-  "General",
-  "Matematicas",
-  "Programacion",
-  "Logica",
-  "Historia",
-];
 
-if (categoria === 0) {
-  dataCategory = data.filter(
-    (dato) => dato.category === listCategory[categoria]
-  );
-}
-export const app = () => {
-  return new Promise((resolve, reject) => {
-    start();
-  });
+
 
   function start() {
     //Filtro la data por categorias
 
     QuestionsLocaStorage();
-    preguntaActual = dataCategory[ordenQuestionAleatorio()];
+    const index = ordenQuestionAleatorio();
+    preguntaActual = dataCategory[index];
     show(preguntaActual);
   }
 
@@ -114,8 +94,6 @@ export const app = () => {
       const order = [false, false, false, false, false];
       localStorage.setItem("order", JSON.stringify(order));
       console.log("se agrego el orden de los elementos del localstorage");
-
-  
     } else {
       let orden = JSON.parse(localStorage.getItem("order"));
       const order = orden.filter((dato) => dato === true);
@@ -136,8 +114,7 @@ export const app = () => {
     dataCategory = data.filter(
       (dato) => dato.category === listCategory[categoria]
     );
-    console.log(categoria);
-    console.log(localStorage);
+
   }
 
   function clickBtnNext() {
@@ -146,30 +123,74 @@ export const app = () => {
     const option3 = document.querySelector("#flexRadioDefault3");
     const option4 = document.querySelector("#flexRadioDefault4");
 
-    switch (preguntaActual.answer) {
-      case 1:
-        option1.checked ? respuestaCorrecta++ : respuestaIncorrecta--;
-        break;
-      case 2:
-        option2.checked ? respuestaCorrecta++ : respuestaIncorrecta--;
-        break;
-      case 3:
-        option3.checked ? respuestaCorrecta++ : respuestaIncorrecta--;
-        break;
-      case 4:
-        option4.checked ? respuestaCorrecta++ : respuestaIncorrecta--;
-        break;
-      default:
-    }
-    puntaje = respuestaCorrecta * 10 - respuestaIncorrecta * 10;
+    try {
 
-    console.log("puntaje", puntaje);
-    QuestionsLocaStorage();
-    preguntaActual = dataCategory[ordenQuestionAleatorio()];
-    nextQuestion(preguntaActual);
+      const radioselecionado= false;
+      const respuesta = preguntaActual.answer;
+      switch (respuesta) {
+        case '1':
+          if (option1.checked) {
+            console.log(option1.checked)
+            respuestaCorrecta++;
+            radioselecionado= true;
+          } else {
+            respuestaIncorrecta--;
+          }
+
+          break;
+        case '2':
+          if (option2.checked) {
+            respuestaCorrecta++;
+            radioselecionado= true;
+          } else {
+            respuestaIncorrecta--;
+          }
+
+          break;
+        case '3':
+          if (option3.checked) {
+            respuestaCorrecta++;
+            radioselecionado= true;
+          } else {
+            respuestaIncorrecta--;
+          }
+
+          break;
+        case '4':
+          if (option4.checked) {
+            respuestaCorrecta++;
+            radioselecionado= true;
+          } else {
+            respuestaIncorrecta--;
+          }
+          break;
+          default:
+            radioselecionado= false;
+            console.log("todo se fue a la mierda")
+            break;
+      }
+
+      if(radioselecionado){
+        puntaje = respuestaCorrecta * 10 - respuestaIncorrecta * 10;
+
+        console.log("puntaje", puntaje);
+        nextQuestion();
+      }
+
+     
+
+
+    } catch (err) {
+      console.log("Error Precesando la pregunta:", err);
+    }
+   
   }
 
   function nextQuestion(data) {
+    QuestionsLocaStorage();
+    const index = ordenQuestionAleatorio();
+    data = dataCategory[index];
+
     const formCard = document.querySelector(".card");
     formCard.reset();
 
