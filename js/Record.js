@@ -1,27 +1,34 @@
+import { login } from "./login.js";
 
-import { app } from "./app.js";
-
-   //restaurara data
-   const data = LocalStorage();
-   var status = 0;
-   var dataOriginal;
+//restaurara data
+const data = LocalStorage();
+var status = 0;
+var dataOriginal;
 export const Record = () => {
   return new Promise((resolve, reject) => {
     initRecor();
   });
 };
 
+const starRe = async () => {
+  try {
+    const Login = await login();
+    Login();   
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 function LocalStorage() {
-    let recordUser = [];
+  let recordUser = [];
 
-    //restauro la data guardada en el local storage
-    if (localStorage.getItem("recordUser") !== null) {
-      recordUser = JSON.parse(localStorage.getItem("recordUser"));
-    }
+  //restauro la data guardada en el local storage
+  if (localStorage.getItem("recordUser") !== null) {
+    recordUser = JSON.parse(localStorage.getItem("recordUser"));
+  }
 
-    return recordUser;
+  return recordUser;
 }
-  
 
 function initRecor() {
   //SE Carga la estretura es el docoment tipo HTML
@@ -53,160 +60,120 @@ function initRecor() {
   dupicarData();
   llenartabla(divfrom, data);
 
-  const btnNext = document.createElement("button");
-  btnNext.classList = "btn btn-dark";
-  btnNext.id = "btn-next";
-  btnNext.textContent = "INGRESAR";
-  btnNext.type = "button";
-  btnNext.addEventListener("click", clickBtnNext, false);
+  const btnRe = document.createElement("button");
+  btnRe.classList = "btn btn-dark";
+  btnRe.id = "btn-next";
+  btnRe.textContent = "Regresar";
+  btnRe.type = "button";
+  btnRe.addEventListener("click", clickbtnRe, false);
 
-  const btnRecord = document.createElement("button");
-  btnRecord.classList = "btn btn-dark";
-  btnRecord.id = "btn-record";
-  btnRecord.textContent = "Historial";
-  btnRecord.type = "button";
-  btnRecord.addEventListener("click", clickBtnNext, false);
-
-  
   container.appendChild(divImgQuestion);
   divImgQuestion.appendChild(imgQuestion);
   container.appendChild(formLogin);
   formLogin.appendChild(divTitle);
   divTitle.appendChild(title1);
-  divfrom.appendChild(btnNext);
-  divfrom.appendChild(btnRecord);
+  divfrom.appendChild(btnRe);
   formLogin.appendChild(divfrom);
 }
 
-function clickBtnNext() {
-  const user = document.querySelector("#input-user");
-  const helpText = document.querySelector("#emailHelp");
-
-  if (user.value != "") {
-    helpText.textContent = "";
-
-    //se limpia la pantalla
-    //clearHtml();
-    //Iniciamos el juego
-    stargame(user.value);
-
-  } else {
-    helpText.textContent = "Por favor ingrese un usuario";
-  }
+function clickbtnRe() {
+  clearHtml();
+  starRe();
 }
 
-const stargame = async (user) => {
-    try {
-      //const Start = app(user.value);
-      const Start = await app(user);
-      Start(user);  
-  
-    } catch (error) {
-      console.log(error);
+
+function clearHtml() {
+  const container = document.querySelector("#container");
+  container.textContent = "";
+}
+
+//Se ordena los elementos de menor a mallor
+function ordenarAZ(data) {
+  data.sort(function (a, b) {
+    if (a.nombre > b.nombre) {
+      return 1;
     }
+    if (a.nombre < b.nombre) {
+      return -1;
+    }
+    return 0;
+  });
+}
+
+//Se ordena los elementos de mallor a menor
+function ordenarZA(data) {
+  data.sort(function (a, b) {
+    if (a.nombre < b.nombre) {
+      return 1;
+    }
+    if (a.nombre > b.nombre) {
+      return -1;
+    }
+    return 0;
+  });
+}
+
+function clickTitulos() {
+  if (status === 0) {
+    ordenarAZ(data);
+  } else if (status === 1) {
+    ordenarZA(data);
+  } else {
+    status = 0;
+    llenartabla(dataOriginal);
+    return true;
+  }
+  status++;
+  llenartabla(data);
+  return false;
+}
+
+const dupicarData = () => {
+  dataOriginal = data.map((dato) => {
+    return dato;
+  });
 };
 
-function clearHtml(){
-    const container = document.querySelector("#container");
-    container.textContent=""
-  
-}
+function llenartabla(divForm, data) {
+  const container = divForm;
 
+  container.innerHTML = "";
 
+  const table = document.createElement("table");
+  const tr = document.createElement("tr");
+  const thName = document.createElement("th");
+  const thScore = document.createElement("th");
+  const thCategory = document.createElement("th");
 
-  //Se ordena los elementos de menor a mallor
-  function ordenarAZ(data) {
-    data.sort(function (a, b) {
-      if (a.nombre > b.nombre) {
-        return 1;
-      }
-      if (a.nombre < b.nombre) {
-        return -1;
-      }
-      return 0;
-    });
-  }
+  thName.textContent = "Nombre";
+  thScore.textContent = "Puntos";
+  thCategory.textContent = "Categoria";
 
-  //Se ordena los elementos de mallor a menor
-  function ordenarZA(data) {
-    data.sort(function (a, b) {
-      if (a.nombre < b.nombre) {
-        return 1;
-      }
-      if (a.nombre > b.nombre) {
-        return -1;
-      }
-      return 0;
-    });
-  }
+  table.append(tr);
 
+  tr.appendChild(thName);
+  tr.appendChild(thScore);
+  tr.appendChild(thCategory);
 
-  function clickTitulos() {
-    if (status === 0) {
-      ordenarAZ(data);
-    } else if (status === 1) {
-      ordenarZA(data);
-    } else {
-      status = 0;
-      llenartabla(dataOriginal);
-      return true;
-    }
-    status++;
-    llenartabla(data);
-    return false;
-  }
+  //Evento del click en los titulos
+  tr.addEventListener("click", clickTitulos, false);
 
-  const dupicarData = () => {
-    dataOriginal = data.map((dato) => {
-      return dato;
-    });
-  };
+  container.append(table);
 
-  function llenartabla(divForm, data) {
-    const container = divForm;
-    
-
-    container.innerHTML = "";
-
-    const table = document.createElement("table");
+  data.forEach((dato) => {
     const tr = document.createElement("tr");
-    const thName = document.createElement("th");
-    const thScore = document.createElement("th");
-    const thCategory = document.createElement("th");
-  
-    thName.textContent = "Nombre";
-    thScore.textContent = "Puntos";
-    thCategory.textContent = "Categoria";
+    const tdName = document.createElement("td");
+    const tdScore = document.createElement("td");
+    const tdCategory = document.createElement("td");
 
+    tdName.textContent = dato.name;
+    tdScore.textContent = dato.score;
+    tdCategory.textContent = dato.categori;
 
-    table.append(tr);
+    tr.appendChild(tdName);
+    tr.appendChild(tdScore);
+    tr.appendChild(tdCategory);
 
-    tr.appendChild(thName);
-    tr.appendChild(thScore);
-    tr.appendChild(thCategory);
-
-
-    //Evento del click en los titulos
-    tr.addEventListener("click", clickTitulos, false);
-
-    container.append(table);
-
-    data.forEach((dato) => {
-      const tr = document.createElement("tr");
-      const tdName = document.createElement("td");
-      const tdScore = document.createElement("td");
-      const tdCategory = document.createElement("td");
-
-      tdName.textContent = dato.name;
-      tdScore.textContent = dato.score;
-      tdCategory.textContent = dato.categori;
-
-      tr.appendChild(tdName);
-      tr.appendChild(tdScore);
-      tr.appendChild(tdCategory);
-
-      table.appendChild(tr);
-    });
-  }
-
-  
+    table.appendChild(tr);
+  });
+}
