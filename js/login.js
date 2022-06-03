@@ -53,6 +53,14 @@ function initLogin() {
   btnNext.type = "button";
   btnNext.addEventListener("click", clickBtnNext, false);
 
+  const btnRecord = document.createElement("button");
+  btnRecord.classList = "btn btn-dark";
+  btnRecord.id = "btn-record";
+  btnRecord.textContent = "Historial";
+  btnRecord.type = "button";
+  btnRecord.addEventListener("click", clickBtnNext, false);
+
+  
   container.appendChild(divImgQuestion);
   divImgQuestion.appendChild(imgQuestion);
   container.appendChild(formLogin);
@@ -62,6 +70,7 @@ function initLogin() {
   divfrom.appendChild(inputUser);
   divfrom.appendChild(helpText);
   divfrom.appendChild(btnNext);
+  divfrom.appendChild(btnRecord);
   formLogin.appendChild(divfrom);
 }
 
