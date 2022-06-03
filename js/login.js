@@ -1,5 +1,5 @@
-
 import { app } from "./app.js";
+import { Record } from "./Record.js";
 
 export const login = () => {
   return new Promise((resolve, reject) => {
@@ -58,9 +58,8 @@ function initLogin() {
   btnRecord.id = "btn-record";
   btnRecord.textContent = "Historial";
   btnRecord.type = "button";
-  btnRecord.addEventListener("click", clickBtnNext, false);
+  btnRecord.addEventListener("click", clickBtnRecord, false);
 
-  
   container.appendChild(divImgQuestion);
   divImgQuestion.appendChild(imgQuestion);
   container.appendChild(formLogin);
@@ -85,25 +84,38 @@ function clickBtnNext() {
     clearHtml();
     //Iniciamos el juego
     stargame(user.value);
-
   } else {
     helpText.textContent = "Por favor ingrese un usuario";
   }
 }
 
+function clickBtnRecord() {
+  //se limpia la pantalla
+  clearHtml();
+  //Iniciamos el juego
+  starRecord();
+}
+
 const stargame = async (user) => {
-    try {
-      //const Start = app(user.value);
-      const Start = await app(user);
-      Start(user);  
-  
-    } catch (error) {
-      console.log(error);
-    }
+  try {
+    //const Start = app(user.value);
+    const Start = await app(user);
+    Start(user);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-function clearHtml(){
-    const container = document.querySelector("#container");
-    container.textContent=""
-  
+const starRecord = async () => {
+  try {
+    const StartRecor = await Record();
+    StartRecor();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+function clearHtml() {
+  const container = document.querySelector("#container");
+  container.textContent = "";
 }

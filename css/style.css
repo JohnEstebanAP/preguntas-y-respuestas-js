@@ -114,3 +114,20 @@ h1{
     background-color:rgb(77, 253, 136);  
     color: white;
 }
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+th{
+    background-color: rgb(91, 195, 255);
+    padding: 10px 20px;
+    border: 2px solid rgb(148, 147, 147);   
+}
+
+td{
+    padding: 10px 20px;
+    border: 2px solid rgb(148, 147, 147);
+}
