@@ -1,7 +1,7 @@
 # Concurso de Preguntas y Respuestas
 Juego de Preguntas Sofka para el laboratorio de JavaScript
  
-<div>puedes ver la paguina web y probarla:  <a href="https://github.com/JohnEstebanAP/Juego-de-Preguntas-Sofka/tree/App_Completa/apk/debug">JUGAR</a></div>
+<div>puedes ver la paguina web y probarla:  <a href="https://johnestebanap.github.io/preguntas-y-respuestas-js/">JUGAR</a></div>
  
 <br>
  Notas:

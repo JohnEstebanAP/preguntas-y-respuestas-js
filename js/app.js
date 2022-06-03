@@ -46,7 +46,7 @@ function starGame() {
 
   const imgQuestion = document.createElement("img");
   imgQuestion.id = "img-question";
-  imgQuestion.src = "/img/puzle.png";
+  imgQuestion.src = "./img/puzle.png";
 
   const divTitle = document.createElement("div");
   divTitle.id = "div-title1";
